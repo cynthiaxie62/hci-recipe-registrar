@@ -1,13 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack'
+import { NavigationContainer } from '@react-navigation/native'
+import BrowseRecipesContainer from './containers/BrowseRecipesContainer'
+import ViewRecipeContainer from './containers/ViewRecipeContainer'
+import LinkingConfiguration from './LinkingConfiguration'
 
 export default function App() {
+  const Stack = createStackNavigator()
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer linking={LinkingConfiguration}> 
+      <Stack.Navigator initialRouteName='browse' screenOptions={{ headerShown: false }}>
+        <Stack.Screen name='browse' component={BrowseRecipesContainer} />
+        <Stack.Screen name='view' component={ViewRecipeContainer} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
