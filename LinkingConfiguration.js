@@ -7,7 +7,12 @@ export default {
   prefixes: [Linking.makeUrl('/')],
   config: {
     screens: {
-        
+        browseRecipesContainer: "browse",
+        viewRecipeContainer: "view",
+        categoriesView: "categories",
+        editRecipeView: "edit",
+        recipeListView: "recipeList",
+        viewRecipeView: "recipe"
     },
   },
 };
