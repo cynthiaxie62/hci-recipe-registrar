@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { ScrollView } from 'react-native';
-import { Text, View, StyleSheet, TextInput } from 'react-native';
+import { Text, View, StyleSheet, TextInput,TouchableOpacity, SafeAreaView } from 'react-native';
 import { IconButton } from 'react-native-paper';
 import { Header, Button } from "react-native-elements";
 import {Collapse,CollapseHeader, CollapseBody, AccordionList} from 'accordion-collapse-react-native';
@@ -51,6 +51,7 @@ export default function EditRecipeView(props, {navigation, routes}) {
                         borderBottomColor: "#E0884A"
                       }}
                 />
+                
                 <View style={{alignSelf: "center"}}>
                     <TextInput 
                         style={styles.title} 
@@ -59,9 +60,9 @@ export default function EditRecipeView(props, {navigation, routes}) {
                     />
                 </View>
             </View>
-                <ScrollView style={{height: "100%", marginBottom: "2%"}}>
+              <ScrollView style={{height: "65%", paddingBottom: "5%"}}>
                     {recipe.map(section => (
-                        <View key={section.sectionName} style={{top: "2%"}}>
+                        <View key={section.sectionName}>
                             <Collapse 
                                 style={styles.accordion}
                                 isCollapsed={true}
@@ -71,7 +72,7 @@ export default function EditRecipeView(props, {navigation, routes}) {
                                         <Text style={styles.accordionHeader}>{section.sectionName}</Text>
                                     </View>
                                 </CollapseHeader>
-                                <CollapseBody>
+                                <CollapseBody style={{marginBottom: "5%"}}>
                                     {section.sectionBody.map(text => (
                                         <View key={text} style={{flexDirection: "row", left: "6%"}}>
                                             <Text style={styles.accordionBody}>&#160;&#8226;&#160;</Text>
@@ -84,16 +85,35 @@ export default function EditRecipeView(props, {navigation, routes}) {
                         </View>
                     ))}
                     
-                </ScrollView>
-            <View style={styles.footerBar}>
+              </ScrollView>
+            {/* <View style={styles.footerBar}>
                 <Header
                     leftComponent={<Button title="Cancel" color="#C32747" />}
                     rightComponent={<Button title="Save" color="green"/>}
                     containerStyle={{
-                        backgroundColor: "#F3DFD6",
+                        backgroundColor: "black",
                         borderBottomColor: "#F3DFD6"
                       }}
                 />
+            </View> */}
+            <View style ={styles.footerContainer}>
+
+                <View style ={styles.buttonContainerRed}> 
+                  <TouchableOpacity >
+                    <View style={styles.button}>
+                      <Text style ={styles.buttonText}>Delete Changes</Text>
+                    </View>
+                  </TouchableOpacity>
+                </View>
+                
+                <View style ={styles.buttonContainerGreen}> 
+                 <TouchableOpacity >
+                   <View style={styles.button}>
+                      <Text style ={styles.buttonText}>Save Changes</Text>
+                   </View>
+                 </TouchableOpacity>
+                </View>
+
             </View>
       </View>
     );
@@ -127,23 +147,67 @@ const styles = StyleSheet.create({
       backgroundColor: "#FAF5F3", 
       width: "80%", 
       alignSelf: "center",
-      marginBottom: "5%"
+      marginBottom: "2%"
     },
     accordionHeader: {
       fontSize: 28,
-      top: "5%",
-      left: "3%",
-      bottom: "5%"
+      fontStyle: 'italic',
+      justifyContent: 'center',
+      left: "5%",
+      paddingTop: "5%",
+      paddingBottom: "5%"
     },
     accordionBody: {
       fontSize: 24,
-      left: "6%",
+      left: "5%",
     },
     footerBar: {
       height: "8%",
       width: "100%",
-      flexDirection: "row", 
-      alignContent: "space-around"
-    }
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'flex-end',
+    },
+
+    footerContainer: {
+      height: '8%',
+      backgroundColor: 'white',
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      alignItems: 'center',
+    },
+
+    buttonContainerRed: {
+      width: '40%',
+      height: '60%',
+      borderRadius: 8,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#C32747',
+    },
+
+    buttonContainerGreen: {
+      width: '40%',
+      height: '60%',
+      borderRadius: 8,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#3B804C',
+    },
+
+    button: {
+      width: '90%',
+      height: '90%',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'rgba(0, 0, 0, 0)',
+    },
+
+    buttonText: {
+      fontSize: 18,
+      color: '#FAF5F3',
+      textAlign: 'center',
+      backgroundColor: 'rgba(0, 0, 0, 0)',
+    },
   });
   
