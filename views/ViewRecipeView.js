@@ -10,7 +10,7 @@ import {Collapse,CollapseHeader, CollapseBody, AccordionList} from 'accordion-co
  * This is a view of a specific recipe.
  */
 export default function ViewRecipeView(props, {navigation, routes}) {
-    var recipe = [
+    const recipe = [
         {
           sectionName: "Ingredients",
           sectionBody: ["flour", "egg", "water", "oil", "<3"]
@@ -61,28 +61,29 @@ export default function ViewRecipeView(props, {navigation, routes}) {
                     <Text style={styles.title}>Recipe Name</Text>
                 </View>
             </View>
-            <View style={{height: "100%"}}>
-                <ScrollView>
+            <ScrollView style={{height: "100%", marginBottom: "2%"}}>
+                {/* <ScrollView style={{height: "100%"}}> */}
                     {recipe.map(section => (
-                        <Collapse 
-                            style={styles.accordion}
-                            isCollapsed={true}
-                            key={section.sectionName}>
-                            <CollapseHeader>
-                                <View>
-                                    <Text style={styles.accordionHeader}>{section.sectionName}</Text>
-                                </View>
-                            </CollapseHeader>
-                            <CollapseBody>
-                                {section.sectionBody.map(text => (
-                                    <Text key={text} style={styles.accordionBody}>&#8226;&#160;{text}</Text>
-                                ))}
-                            </CollapseBody>
-                        </Collapse>
+                        <View key={section.sectionName} style={{top: "2%"}}>
+                            <Collapse 
+                                style={styles.accordion}
+                                isCollapsed={true}>
+                                <CollapseHeader>
+                                    <View>
+                                        <Text style={styles.accordionHeader}>{section.sectionName}</Text>
+                                    </View>
+                                </CollapseHeader>
+                                <CollapseBody>
+                                    {section.sectionBody.map(text => (
+                                        <Text key={text} style={styles.accordionBody}>&#8226;&#160;{text}</Text>
+                                    ))}
+                                </CollapseBody>
+                            </Collapse>
+                        </View>
                     ))}
                     
-                </ScrollView>
-            </View>
+                {/* </ScrollView> */}
+            </ScrollView>
       </View>
     );
 }
@@ -111,7 +112,7 @@ const styles = StyleSheet.create({
       backgroundColor: "#FAF5F3", 
       width: "80%", 
       alignSelf: "center",
-      bottom: "2%"
+      marginBottom: "5%"
     },
     accordionHeader: {
       fontSize: 28,

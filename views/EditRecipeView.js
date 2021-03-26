@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import { ScrollView } from 'react-native';
-import { TouchableOpacity } from 'react-native';
 import { Text, View, StyleSheet, TextInput } from 'react-native';
 import { IconButton } from 'react-native-paper';
 import { Header, Button } from "react-native-elements";
@@ -56,36 +55,36 @@ export default function EditRecipeView(props, {navigation, routes}) {
                     <TextInput 
                         style={styles.title} 
                         value={recipeName} 
-                        onSubmitEditing={value => setRecipeName(value)} //TODO: fix value setting
+                        onChange={value => setRecipeName(value)} //TODO: fix value setting
                     />
                 </View>
             </View>
-            <View style={{height: "70%"}}>
-                <ScrollView>
+                <ScrollView style={{height: "100%", marginBottom: "2%"}}>
                     {recipe.map(section => (
-                        <Collapse 
-                            style={styles.accordion}
-                            isCollapsed={true}
-                            key={section.sectionName}>
-                            <CollapseHeader>
-                                <View>
-                                    <Text style={styles.accordionHeader}>{section.sectionName}</Text>
-                                </View>
-                            </CollapseHeader>
-                            <CollapseBody>
-                                {section.sectionBody.map(text => (
-                                    <View key={text} style={{flexDirection: "row", left: "6%"}}>
-                                        <Text style={styles.accordionBody}>&#160;&#8226;&#160;</Text>
-                                        <TextInput value={text} style={styles.accordionBody}/>
+                        <View key={section.sectionName} style={{top: "2%"}}>
+                            <Collapse 
+                                style={styles.accordion}
+                                isCollapsed={true}
+                                key={section.sectionName}>
+                                <CollapseHeader>
+                                    <View>
+                                        <Text style={styles.accordionHeader}>{section.sectionName}</Text>
                                     </View>
-                                    
-                                ))}
-                            </CollapseBody>
-                        </Collapse>
+                                </CollapseHeader>
+                                <CollapseBody>
+                                    {section.sectionBody.map(text => (
+                                        <View key={text} style={{flexDirection: "row", left: "6%"}}>
+                                            <Text style={styles.accordionBody}>&#160;&#8226;&#160;</Text>
+                                            <TextInput value={text} style={styles.accordionBody}/>
+                                        </View>
+                                        
+                                    ))}
+                                </CollapseBody>
+                            </Collapse>
+                        </View>
                     ))}
                     
                 </ScrollView>
-            </View>
             <View style={styles.footerBar}>
                 <Header
                     leftComponent={<Button title="Cancel" color="#C32747" />}
@@ -128,7 +127,7 @@ const styles = StyleSheet.create({
       backgroundColor: "#FAF5F3", 
       width: "80%", 
       alignSelf: "center",
-      bottom: "2%"
+      marginBottom: "5%"
     },
     accordionHeader: {
       fontSize: 28,
