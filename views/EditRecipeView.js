@@ -37,9 +37,31 @@ export default function EditRecipeView(props, {navigation, routes}) {
         }];
     return (
       <View style={styles.container}>
-            <View style={styles.headerBar}>
+            {/* <View style={styles.headerBar}>
                 <Header 
                     style={{flexDirection: "row", color: "#E0884A"}}
+                    leftComponent= {<IconButton
+                        icon="arrow-left"
+                        color="white"
+                        size={35}
+                        onPress={() => props.navigation.navigate("viewRecipe")}
+                    />}
+                    containerStyle={{
+                        backgroundColor: "green",
+                        borderBottomColor: "pink"
+                      }}
+                />
+                
+                <View style={styles.recipeNameContainer}>
+                    <TextInput 
+                        style={styles.title} 
+                        value={recipeName} 
+                        onChange={value => setRecipeName(value)} //TODO: fix value setting
+                    />
+                </View>
+            </View> */}
+            <View style={styles.header}>
+            <Header 
                     leftComponent= {<IconButton
                         icon="arrow-left"
                         color="white"
@@ -51,15 +73,15 @@ export default function EditRecipeView(props, {navigation, routes}) {
                         borderBottomColor: "#E0884A"
                       }}
                 />
-                
-                <View style={{alignSelf: "center"}}>
-                    <TextInput 
+                <View style={{justifyContent: "center", alignItems: "center"}}>
+                  <TextInput 
                         style={styles.title} 
                         value={recipeName} 
                         onChange={value => setRecipeName(value)} //TODO: fix value setting
                     />
                 </View>
             </View>
+                
               <ScrollView style={{height: "65%", paddingBottom: "5%"}}>
                     {recipe.map(section => (
                         <View key={section.sectionName}>
@@ -86,16 +108,6 @@ export default function EditRecipeView(props, {navigation, routes}) {
                     ))}
                     
               </ScrollView>
-            {/* <View style={styles.footerBar}>
-                <Header
-                    leftComponent={<Button title="Cancel" color="#C32747" />}
-                    rightComponent={<Button title="Save" color="green"/>}
-                    containerStyle={{
-                        backgroundColor: "black",
-                        borderBottomColor: "#F3DFD6"
-                      }}
-                />
-            </View> */}
             <View style ={styles.footerContainer}>
 
                 <View style ={styles.buttonContainerRed}> 
@@ -125,19 +137,18 @@ const styles = StyleSheet.create({
       backgroundColor: "#F3DFD6",
       fontFamily: "PT Serif Caption"
     },
-    headerBar: {
+    header: {
       backgroundColor: "#E0884A",
       flexDirection: "column",
       height: "22%",
       bottom: "2%"
     },
+
     title: {
       fontSize: 35,
       color: "white",
       borderColor: "black",
       borderWidth: 1,
-      padding: 5,
-      bottom: "5%"
     },
     actionText: {
       fontSize: 25,

@@ -57,13 +57,13 @@ export default function ViewRecipeView(props, {navigation, routes}) {
                         borderBottomColor: "#E0884A"
                       }}
                 />
-                <View style={{bottom: "5%", left: "5%"}}>
+                <View style={{left: "5%"}}>
                     <Text style={styles.title}>Recipe Name</Text>
                 </View>
             </View>
             <ScrollView style={{height: "100%", marginBottom: "15%"}}>
                     {recipe.map(section => (
-                        <View key={section.sectionName}>
+                        <View key={section.sectionName} style={{}}>
                             <Collapse 
                                 style={styles.accordion}
                                 isCollapsed={true}>
