@@ -9,16 +9,16 @@ export default function RecipeListView(props, {navigation, routes}) {
   const [recipe, id] = React.useState([
     { name: 'chicken pot pie', key: '1'},
     { name: 'beef pot pie', key: '2'},
-    { name: 'turkey pot pie', key: '3'},
-    { name: 'human pot pie', key: '4'},
-    { name: 'feet pot pie', key: '5'},
-    { name: 'butt pot pie', key: '6'},
-    { name: 'leg pot pie', key: '7'},
-    { name: 'soup pot pie', key: '8'},
-    { name: 'pot pot pie', key: '9'},
-    { name: 'pie pot pie', key: '10'},
-    { name: 'folder pot pie', key: '11'},
-    { name: 'cantalop pot pie', key: '12'},
+    { name: 'mcdonalds', key: '3'},
+    { name: 'fried rice', key: '4'},
+    { name: 'chipotle', key: '5'},
+    { name: 'sushi', key: '6'},
+    { name: 'water', key: '7'},
+    { name: 'cake', key: '8'},
+    { name: 'lemon cookies', key: '9'},
+    { name: 'chocolate chip cookies', key: '10'},
+    { name: 'gummies', key: '11'},
+    { name: 'fruit salad', key: '12'},
 
   ]);
     return (
