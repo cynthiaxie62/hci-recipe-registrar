@@ -13,7 +13,7 @@ export default function ViewRecipeView(props, {navigation, routes}) {
     const recipe = [
         {
           sectionName: "Ingredients",
-          sectionBody: ["flour", "egg", "water", "oil", "<3"]
+          sectionBody: ["flour", "egg", "water", "oil", "<3", "<3", "<3", "<3", "<3"]
         }, 
         {
           sectionName: "Steps",
@@ -57,14 +57,13 @@ export default function ViewRecipeView(props, {navigation, routes}) {
                         borderBottomColor: "#E0884A"
                       }}
                 />
-                <View style={{bottom: "5%", left: "7%"}}>
+                <View style={{left: "5%"}}>
                     <Text style={styles.title}>Recipe Name</Text>
                 </View>
             </View>
-            <ScrollView style={{height: "100%", marginBottom: "2%"}}>
-                {/* <ScrollView style={{height: "100%"}}> */}
+            <ScrollView style={{height: "100%", marginBottom: "15%"}}>
                     {recipe.map(section => (
-                        <View key={section.sectionName} style={{top: "2%"}}>
+                        <View key={section.sectionName} style={{}}>
                             <Collapse 
                                 style={styles.accordion}
                                 isCollapsed={true}>
@@ -73,7 +72,7 @@ export default function ViewRecipeView(props, {navigation, routes}) {
                                         <Text style={styles.accordionHeader}>{section.sectionName}</Text>
                                     </View>
                                 </CollapseHeader>
-                                <CollapseBody>
+                                <CollapseBody style={{marginBottom: "5%"}}> 
                                     {section.sectionBody.map(text => (
                                         <Text key={text} style={styles.accordionBody}>&#8226;&#160;{text}</Text>
                                     ))}
@@ -82,7 +81,6 @@ export default function ViewRecipeView(props, {navigation, routes}) {
                         </View>
                     ))}
                     
-                {/* </ScrollView> */}
             </ScrollView>
       </View>
     );
@@ -112,17 +110,19 @@ const styles = StyleSheet.create({
       backgroundColor: "#FAF5F3", 
       width: "80%", 
       alignSelf: "center",
-      marginBottom: "5%"
+      marginBottom: "2%"
     },
     accordionHeader: {
       fontSize: 28,
-      top: "5%",
-      left: "3%",
-      bottom: "5%"
+      fontStyle: 'italic',
+      justifyContent: 'center',
+      left: "5%",
+      paddingTop: "5%",
+      paddingBottom: "5%"
     },
     accordionBody: {
       fontSize: 24,
-      left: "6%",
+      left: "5%",
     }
   });
   
