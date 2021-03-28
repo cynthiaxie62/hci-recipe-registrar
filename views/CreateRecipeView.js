@@ -6,34 +6,34 @@ import { Header, Button } from "react-native-elements";
 import {Collapse,CollapseHeader, CollapseBody, AccordionList} from 'accordion-collapse-react-native';
 
 /**
- * This is a view to edit a recipe
+ * This is a view to create a recipe
  */
-export default function EditRecipeView(props, {navigation, routes}) {
-    const [recipeName, setRecipeName] = useState("Recipe Name")
+export default function CreateRecipeView(props, {navigation, routes}) {
+    const [recipeName, setRecipeName] = useState("")
     var recipe = [
         {
           sectionName: "Ingredients",
-          sectionBody: ["flour", "egg", "water", "oil", "<3"]
+          sectionBody: [""]
         }, 
         {
           sectionName: "Steps",
-          sectionBody: ["step 1", "step 2", "step 3"]
+          sectionBody: [""]
         }, 
         {
           sectionName: "Kitchen Equipment",
-          sectionBody: ["stand mixer", "oven"]
+          sectionBody: [""]
         }, 
         {
           sectionName: "Additional Notes",
-          sectionBody: ["this bread is cool"]
+          sectionBody: [""]
         }, 
         {
           sectionName: "Images",
-          sectionBody: []
+          sectionBody: [""]
         }, 
         {
           sectionName: "Tags",
-          sectionBody: ["baked goods", "italian"]
+          sectionBody: [""]
         }];
     return (
       <View style={styles.container}>
@@ -44,7 +44,7 @@ export default function EditRecipeView(props, {navigation, routes}) {
                         icon="arrow-left"
                         color="white"
                         size={35}
-                        onPress={() => props.navigation.navigate("viewRecipe")}
+                        onPress={() => props.navigation.navigate("browse")}
                     />}
                     containerStyle={{
                         backgroundColor: "#E0884A",
@@ -54,7 +54,7 @@ export default function EditRecipeView(props, {navigation, routes}) {
                 <View style={{alignSelf: "center"}}>
                     <TextInput 
                         style={styles.title} 
-                        value={recipeName} 
+                        placeholder="Enter recipe name"
                         onChange={value => setRecipeName(value)} //TODO: fix value setting
                     />
                 </View>
@@ -75,7 +75,7 @@ export default function EditRecipeView(props, {navigation, routes}) {
                                     {section.sectionBody.map(text => (
                                         <View key={text} style={{flexDirection: "row", left: "6%"}}>
                                             <Text style={styles.accordionBody}>&#160;&#8226;&#160;</Text>
-                                            <TextInput value={text} style={styles.accordionBody}/>
+                                            <TextInput placeholder="Type here" style={styles.accordionBody}/>
                                         </View>
                                         
                                     ))}
@@ -87,8 +87,8 @@ export default function EditRecipeView(props, {navigation, routes}) {
                 </ScrollView>
             <View style={styles.footerBar}>
                 <Header
-                    leftComponent={<Button title="Cancel" color="#C32747" onPress={() => props.navigation.navigate("viewRecipe")} />}
-                    rightComponent={<Button title="Save" color="green" onPress={() => props.navigation.navigate("viewRecipe")}/>}
+                    leftComponent={<Button title="Cancel" color="#C32747" onPress={() => props.navigation.navigate("browse")}/>}
+                    rightComponent={<Button title="Create" color="green" onPress={() => props.navigation.navigate("viewRecipe")}/>}
                     containerStyle={{
                         backgroundColor: "#F3DFD6",
                         borderBottomColor: "#F3DFD6"

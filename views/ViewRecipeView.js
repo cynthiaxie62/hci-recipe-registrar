@@ -45,7 +45,7 @@ export default function ViewRecipeView(props, {navigation, routes}) {
                         icon="arrow-left"
                         color="white"
                         size={35}
-                        onPress={() => console.log('back')}
+                        onPress={() => props.navigation.navigate("browse")}
                     />}
                     rightComponent= {<TouchableOpacity 
                         style={{alignSelf: "flex-end", top:"20%", right: "20%"}}

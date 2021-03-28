@@ -25,7 +25,7 @@ export default function RecipeListView(props, {navigation, routes}) {
         <View style={styles.container}>
 
           <SafeAreaView style ={styles.header}>
-            <View style ={styles.serachContainer}>
+            <View style ={styles.searchContainer}>
               <SearchBar/> 
             </View>
 
@@ -33,7 +33,7 @@ export default function RecipeListView(props, {navigation, routes}) {
                 <Text style ={styles.titleText}>Recipes</Text>
                 
                 <View style ={styles.buttonContainer}> 
-                 <TouchableOpacity >
+                 <TouchableOpacity onPress={() => props.navigation.navigate("view", {screen: "createRecipe"})}>
                    <View style={styles.button}>
                     <Text style ={styles.buttonText}>Add New Recipe</Text>
                    </View>
@@ -47,7 +47,9 @@ export default function RecipeListView(props, {navigation, routes}) {
             {recipe.map((recipe) => {
               return (
                 <View key={recipe.key}>
+                  <TouchableOpacity onPress={() => props.navigation.navigate("view")}>
                     <Text style={styles.recipe}>{recipe.name} </Text>
+                  </TouchableOpacity>
                 </View>
               )
             })}
@@ -62,8 +64,8 @@ export default function RecipeListView(props, {navigation, routes}) {
 
 const SearchBar = () => {
   return(
-    <View style={styles.serachbar} > 
-      <TextInput style={styles.serachInput} placeholder ="Search Recipe..." />
+    <View style={styles.searchBar} > 
+      <TextInput style={styles.searchInput} placeholder ="Search Recipe..." />
     </View>
 
   )
@@ -80,21 +82,21 @@ const styles = StyleSheet.create({
       backgroundColor: '#E0884A',
     },
 
-    serachContainer: {
+    searchContainer: {
       height: '40%',
       backgroundColor: '#E0884A',
       justifyContent: 'center',
       alignItems: 'center'
     },
 
-    serachbar: { 
+    searchBar: { 
       width: '80%',
       height: '60%',
       backgroundColor: '#FAF5F3',
-      borderRadius: 8 
+      borderRadius: 8
     },
     
-    serachInput: {
+    searchInput: {
       width: '100%',
       height: '100%',
       paddingLeft: 8,
