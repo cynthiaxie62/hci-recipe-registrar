@@ -5,6 +5,8 @@ import { NavigationContainer } from '@react-navigation/native'
 import CategoriesView from '../views/CategoriesView';
 import RecipeListView from '../views/RecipeListView';
 import { Icon } from 'react-native-elements';
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+import { FontAwesome5 } from '@expo/vector-icons'; 
 
 /**
  * This is a container for browsing recipes screens
@@ -23,12 +25,9 @@ export default function BrowseRecipesContainer(props, {navigation, routes}) {
             name="Browse"
             component={RecipeListView} 
             options={{
-              tabBarLabel: 'Browse',
+              tabBarLabel: 'Recipes',
               tabBarIcon: ({color}) => (
-                <Icon
-                name='home'
-                color={color}
-                />
+                <MaterialCommunityIcons name="food" size={24} color="black" />
               ),
             }}
           />
@@ -38,10 +37,7 @@ export default function BrowseRecipesContainer(props, {navigation, routes}) {
             options={{
               tabBarLabel: 'Categories',
               tabBarIcon: ({color}) => (
-                <Icon
-                  name='chat' 
-                  color={color}
-                />
+                <FontAwesome5 name="layer-group" size={24} color="black" />
               ),
             }}
           />
