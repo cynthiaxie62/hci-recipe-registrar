@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { ScrollView } from 'react-native';
-import { Text, View, StyleSheet, TextInput } from 'react-native';
+import { Text, View, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import { IconButton } from 'react-native-paper';
 import { Header, Button } from "react-native-elements";
 import {Collapse,CollapseHeader, CollapseBody, AccordionList} from 'accordion-collapse-react-native';
@@ -37,7 +37,7 @@ export default function CreateRecipeView(props, {navigation, routes}) {
         }];
     return (
       <View style={styles.container}>
-            <View style={styles.headerBar}>
+            <View style={styles.header}>
                 <Header 
                     style={{flexDirection: "row", color: "#E0884A"}}
                     leftComponent= {<IconButton
@@ -51,14 +51,14 @@ export default function CreateRecipeView(props, {navigation, routes}) {
                         borderBottomColor: "#E0884A"
                       }}
                 />
-                <View style={{alignSelf: "center"}}>
-                    <TextInput 
+            </View>
+            <View style={{justifyContent: "center", alignItems: "center", backgroundColor: "#E0884A"}}>
+                  <TextInput 
                         style={styles.title} 
                         placeholder="Enter recipe name"
                         onChange={value => setRecipeName(value)} //TODO: fix value setting
                     />
                 </View>
-            </View>
                 <ScrollView style={{height: "100%", marginBottom: "2%"}}>
                     {recipe.map(section => (
                         <View key={section.sectionName} style={{top: "2%"}}>
@@ -85,15 +85,23 @@ export default function CreateRecipeView(props, {navigation, routes}) {
                     ))}
                     
                 </ScrollView>
-            <View style={styles.footerBar}>
-                <Header
-                    leftComponent={<Button title="Cancel" color="#C32747" onPress={() => props.navigation.navigate("browse")}/>}
-                    rightComponent={<Button title="Create" color="green" onPress={() => props.navigation.navigate("viewRecipe")}/>}
-                    containerStyle={{
-                        backgroundColor: "#F3DFD6",
-                        borderBottomColor: "#F3DFD6"
-                      }}
-                />
+            <View style ={styles.footerContainer}>
+
+                <View style ={styles.buttonContainerRed}> 
+                  <TouchableOpacity onPress={() => props.navigation.navigate("browse")} >
+                    <View style={styles.button}>
+                      <Text style ={styles.buttonText}>Delete Recipe</Text>
+                    </View>
+                  </TouchableOpacity>
+                </View>
+                
+                <View style ={styles.buttonContainerGreen}> 
+                 <TouchableOpacity onPress={() => props.navigation.navigate("viewRecipe")} >
+                   <View style={styles.button}>
+                      <Text style ={styles.buttonText}>Create Recipe</Text>
+                   </View>
+                 </TouchableOpacity>
+                </View>
             </View>
       </View>
     );
@@ -105,19 +113,18 @@ const styles = StyleSheet.create({
       backgroundColor: "#F3DFD6",
       fontFamily: "PT Serif Caption"
     },
-    headerBar: {
+    header: {
       backgroundColor: "#E0884A",
       flexDirection: "column",
-      height: "22%",
-      bottom: "2%"
+      height: "15%"
     },
     title: {
       fontSize: 35,
       color: "white",
       borderColor: "black",
       borderWidth: 1,
-      padding: 5,
-      bottom: "5%"
+      padding: "2%",
+      marginBottom: "2%"
     },
     actionText: {
       fontSize: 25,
@@ -142,8 +149,50 @@ const styles = StyleSheet.create({
     footerBar: {
       height: "8%",
       width: "100%",
-      flexDirection: "row", 
-      alignContent: "space-around"
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'flex-end',
+    },
+
+    footerContainer: {
+      height: '8%',
+      backgroundColor: 'white',
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      alignItems: 'center',
+    },
+
+    buttonContainerRed: {
+      width: '40%',
+      height: '60%',
+      borderRadius: 8,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#C32747',
+    },
+
+    buttonContainerGreen: {
+      width: '40%',
+      height: '60%',
+      borderRadius: 8,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#3B804C',
+    },
+
+    button: {
+      width: '90%',
+      height: '90%',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'rgba(0, 0, 0, 0)',
+    },
+
+    buttonText: {
+      fontSize: 18,
+      color: '#FAF5F3',
+      textAlign: 'center',
+      backgroundColor: 'rgba(0, 0, 0, 0)',
     }
   });
   

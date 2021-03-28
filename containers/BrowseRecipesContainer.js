@@ -17,7 +17,10 @@ export default function BrowseRecipesContainer(props, {navigation, routes}) {
         <Tab.Navigator
           initialRouteName="Browse"
           tabBarOptions={{          
-            activeTintColor: '#1E63E9'
+            activeTintColor: '#E0884A',
+            labelStyle: {
+              fontSize: 15,
+            },
           }}
         >
           <Tab.Screen 
@@ -26,7 +29,7 @@ export default function BrowseRecipesContainer(props, {navigation, routes}) {
             options={{
               tabBarLabel: 'Recipes',
               tabBarIcon: ({color}) => (
-                <MaterialCommunityIcons name="food" size={24} color="black" />
+                <MaterialCommunityIcons name="food" size={24} color={color} />
               ),
             }}
           />
@@ -36,7 +39,7 @@ export default function BrowseRecipesContainer(props, {navigation, routes}) {
             options={{
               tabBarLabel: 'Categories',
               tabBarIcon: ({color}) => (
-                <FontAwesome5 name="layer-group" size={24} color="black" />
+                <FontAwesome5 name="layer-group" size={24} color={color} />
               ),
             }}
           />

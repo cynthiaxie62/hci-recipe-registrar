@@ -13,7 +13,7 @@ export default function ViewRecipeView(props, {navigation, routes}) {
     const recipe = [
         {
           sectionName: "Ingredients",
-          sectionBody: ["flour", "egg", "water", "oil", "<3", "<3", "<3", "<3", "<3"]
+          sectionBody: ["flour", "egg", "water", "oil", "<3"]
         }, 
         {
           sectionName: "Steps",
