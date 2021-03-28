@@ -14,7 +14,6 @@ import { FontAwesome5 } from '@expo/vector-icons';
 export default function BrowseRecipesContainer(props, {navigation, routes}) {
   const Tab = createBottomTabNavigator();
     return (
-      <NavigationContainer independent={true}>
         <Tab.Navigator
           initialRouteName="Browse"
           tabBarOptions={{          
@@ -42,7 +41,6 @@ export default function BrowseRecipesContainer(props, {navigation, routes}) {
             }}
           />
         </Tab.Navigator>
-      </NavigationContainer>
     );
 }
 

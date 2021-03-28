@@ -1,43 +1,42 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import { ScrollView } from 'react-native';
-import { TouchableOpacity } from 'react-native';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, TextInput } from 'react-native';
 import { IconButton } from 'react-native-paper';
 import { Header, Button } from "react-native-elements";
 import {Collapse,CollapseHeader, CollapseBody, AccordionList} from 'accordion-collapse-react-native';
 
 /**
- * This is a view of a specific recipe.
+ * This is a view to create a recipe
  */
-export default function ViewRecipeView(props, {navigation, routes}) {
-    const recipe = [
+export default function CreateRecipeView(props, {navigation, routes}) {
+    const [recipeName, setRecipeName] = useState("")
+    var recipe = [
         {
           sectionName: "Ingredients",
-          sectionBody: ["flour", "egg", "water", "oil", "<3", "<3", "<3", "<3", "<3"]
+          sectionBody: [""]
         }, 
         {
           sectionName: "Steps",
-          sectionBody: ["step 1", "step 2", "step 3"]
+          sectionBody: [""]
         }, 
         {
           sectionName: "Kitchen Equipment",
-          sectionBody: ["stand mixer", "oven"]
+          sectionBody: [""]
         }, 
         {
           sectionName: "Additional Notes",
-          sectionBody: ["this bread is cool"]
+          sectionBody: [""]
         }, 
         {
           sectionName: "Images",
-          sectionBody: []
+          sectionBody: [""]
         }, 
         {
           sectionName: "Tags",
-          sectionBody: ["baked goods", "italian"]
+          sectionBody: [""]
         }];
-
     return (
-        <View style={styles.container}>
+      <View style={styles.container}>
             <View style={styles.headerBar}>
                 <Header 
                     style={{flexDirection: "row", color: "#E0884A"}}
@@ -47,41 +46,55 @@ export default function ViewRecipeView(props, {navigation, routes}) {
                         size={35}
                         onPress={() => props.navigation.navigate("browse")}
                     />}
-                    rightComponent= {<TouchableOpacity 
-                        style={{alignSelf: "flex-end", top:"20%", right: "20%"}}
-                        onPress={() => props.navigation.navigate("editRecipe")}>
-                        <Text style={styles.actionText}>Edit</Text>
-                    </TouchableOpacity>}
                     containerStyle={{
                         backgroundColor: "#E0884A",
                         borderBottomColor: "#E0884A"
                       }}
                 />
-                <View style={{left: "5%"}}>
-                    <Text style={styles.title}>Recipe Name</Text>
+                <View style={{alignSelf: "center"}}>
+                    <TextInput 
+                        style={styles.title} 
+                        placeholder="Enter recipe name"
+                        onChange={value => setRecipeName(value)} //TODO: fix value setting
+                    />
                 </View>
             </View>
-            <ScrollView style={{height: "100%", marginBottom: "15%"}}>
+                <ScrollView style={{height: "100%", marginBottom: "2%"}}>
                     {recipe.map(section => (
-                        <View key={section.sectionName} style={{}}>
+                        <View key={section.sectionName} style={{top: "2%"}}>
                             <Collapse 
                                 style={styles.accordion}
-                                isCollapsed={true}>
+                                isCollapsed={true}
+                                key={section.sectionName}>
                                 <CollapseHeader>
                                     <View>
                                         <Text style={styles.accordionHeader}>{section.sectionName}</Text>
                                     </View>
                                 </CollapseHeader>
-                                <CollapseBody style={{marginBottom: "5%"}}> 
+                                <CollapseBody>
                                     {section.sectionBody.map(text => (
-                                        <Text key={text} style={styles.accordionBody}>&#8226;&#160;{text}</Text>
+                                        <View key={text} style={{flexDirection: "row", left: "6%"}}>
+                                            <Text style={styles.accordionBody}>&#160;&#8226;&#160;</Text>
+                                            <TextInput placeholder="Type here" style={styles.accordionBody}/>
+                                        </View>
+                                        
                                     ))}
                                 </CollapseBody>
                             </Collapse>
                         </View>
                     ))}
                     
-            </ScrollView>
+                </ScrollView>
+            <View style={styles.footerBar}>
+                <Header
+                    leftComponent={<Button title="Cancel" color="#C32747" onPress={() => props.navigation.navigate("browse")}/>}
+                    rightComponent={<Button title="Create" color="green" onPress={() => props.navigation.navigate("viewRecipe")}/>}
+                    containerStyle={{
+                        backgroundColor: "#F3DFD6",
+                        borderBottomColor: "#F3DFD6"
+                      }}
+                />
+            </View>
       </View>
     );
 }
@@ -100,7 +113,11 @@ const styles = StyleSheet.create({
     },
     title: {
       fontSize: 35,
-      color: "white"
+      color: "white",
+      borderColor: "black",
+      borderWidth: 1,
+      padding: 5,
+      bottom: "5%"
     },
     actionText: {
       fontSize: 25,
@@ -110,19 +127,23 @@ const styles = StyleSheet.create({
       backgroundColor: "#FAF5F3", 
       width: "80%", 
       alignSelf: "center",
-      marginBottom: "2%"
+      marginBottom: "5%"
     },
     accordionHeader: {
       fontSize: 28,
-      fontStyle: 'italic',
-      justifyContent: 'center',
-      left: "5%",
-      paddingTop: "5%",
-      paddingBottom: "5%"
+      top: "5%",
+      left: "3%",
+      bottom: "5%"
     },
     accordionBody: {
       fontSize: 24,
-      left: "5%",
+      left: "6%",
+    },
+    footerBar: {
+      height: "8%",
+      width: "100%",
+      flexDirection: "row", 
+      alignContent: "space-around"
     }
   });
   

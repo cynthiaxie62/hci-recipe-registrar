@@ -106,12 +106,11 @@ export default function EditRecipeView(props, {navigation, routes}) {
                             </Collapse>
                         </View>
                     ))}
-                    
               </ScrollView>
             <View style ={styles.footerContainer}>
 
                 <View style ={styles.buttonContainerRed}> 
-                  <TouchableOpacity >
+                  <TouchableOpacity onPress={() => props.navigation.navigate("viewRecipe")} >
                     <View style={styles.button}>
                       <Text style ={styles.buttonText}>Delete Changes</Text>
                     </View>
@@ -119,13 +118,12 @@ export default function EditRecipeView(props, {navigation, routes}) {
                 </View>
                 
                 <View style ={styles.buttonContainerGreen}> 
-                 <TouchableOpacity >
+                 <TouchableOpacity onPress={() => props.navigation.navigate("viewRecipe")} >
                    <View style={styles.button}>
                       <Text style ={styles.buttonText}>Save Changes</Text>
                    </View>
                  </TouchableOpacity>
                 </View>
-
             </View>
       </View>
     );

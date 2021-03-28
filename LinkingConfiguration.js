@@ -12,7 +12,8 @@ export default {
         categoriesView: "categories",
         editRecipeView: "edit",
         recipeListView: "recipeList",
-        viewRecipeView: "recipe"
+        viewRecipeView: "recipe",
+        createRecipeView: "create"
     },
   },
 };
