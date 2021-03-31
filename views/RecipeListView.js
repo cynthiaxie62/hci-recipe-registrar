@@ -7,8 +7,8 @@ import { Text, View, StyleSheet, SafeAreaView, TouchableOpacity, TextInput, Scro
  */
 export default function RecipeListView(props, {navigation, routes}) {
   const [recipe, id] = React.useState([
-    { name: 'chicken pot pie', key: '1'},
-    { name: 'beef pot pie', key: '2'},
+    { name: 'bread', key: '1'},
+    { name: 'chicken pot pie', key: '2'},
     { name: 'mcdonalds', key: '3'},
     { name: 'fried rice', key: '4'},
     { name: 'chipotle', key: '5'},

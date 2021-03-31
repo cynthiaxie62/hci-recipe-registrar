@@ -13,15 +13,18 @@ export default function ViewRecipeView(props, {navigation, routes}) {
     const recipe = [
         {
           sectionName: "Ingredients",
-          sectionBody: ["flour", "egg", "water", "oil", "<3"]
+          sectionBody: ["bread flour", "yeast", "water", "olive oil", "salt", "milk"]
         }, 
         {
           sectionName: "Steps",
-          sectionBody: ["step 1", "step 2", "step 3"]
+          sectionBody: ["Bloom yeast in warm water for 5 minutes.", 
+          "Mix all ingredients in a large bowl.", 
+          "Rest dough for 3 hours.", "Preheat oven to 450*F",
+          "Place dough in dutch oven and place in oven for 45 minutes."]
         }, 
         {
           sectionName: "Kitchen Equipment",
-          sectionBody: ["stand mixer", "oven"]
+          sectionBody: ["dutch oven"]
         }, 
         {
           sectionName: "Additional Notes",
@@ -33,7 +36,7 @@ export default function ViewRecipeView(props, {navigation, routes}) {
         }, 
         {
           sectionName: "Tags",
-          sectionBody: ["baked goods", "italian"]
+          sectionBody: ["baked goods", "French"]
         }];
 
     return (
@@ -66,7 +69,7 @@ export default function ViewRecipeView(props, {navigation, routes}) {
                         <View key={section.sectionName} style={{}}>
                             <Collapse 
                                 style={styles.accordion}
-                                isCollapsed={true}>
+                                isExpanded={true}>
                                 <CollapseHeader>
                                     <View>
                                         <Text style={styles.accordionHeader}>{section.sectionName}</Text>
@@ -123,6 +126,7 @@ const styles = StyleSheet.create({
     accordionBody: {
       fontSize: 24,
       left: "5%",
+      paddingRight: "6%"
     }
   });
   

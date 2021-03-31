@@ -10,18 +10,21 @@ import {Collapse,CollapseHeader, CollapseBody, AccordionList} from 'accordion-co
  */
 export default function EditRecipeView(props, {navigation, routes}) {
     const [recipeName, setRecipeName] = useState("Recipe Name")
-    var recipe = [
+    const recipe = [
         {
           sectionName: "Ingredients",
-          sectionBody: ["flour", "egg", "water", "oil", "<3"]
+          sectionBody: ["bread flour", "yeast", "water", "olive oil", "salt"]
         }, 
         {
           sectionName: "Steps",
-          sectionBody: ["step 1", "step 2", "step 3"]
+          sectionBody: ["Bloom yeast in warm water for 5 minutes.", 
+          "Mix all ingredients in a large bowl.", 
+          "Rest dough for 3 hours.", "Preheat oven to 450*F",
+          "Place dough in dutch oven and place in oven for 45 minutes."]
         }, 
         {
           sectionName: "Kitchen Equipment",
-          sectionBody: ["stand mixer", "oven"]
+          sectionBody: ["dutch oven", "large bowl"]
         }, 
         {
           sectionName: "Additional Notes",
@@ -33,7 +36,7 @@ export default function EditRecipeView(props, {navigation, routes}) {
         }, 
         {
           sectionName: "Tags",
-          sectionBody: ["baked goods", "italian"]
+          sectionBody: ["baked goods", "French"]
         }];
     return (
       <View style={styles.container}>
@@ -55,8 +58,9 @@ export default function EditRecipeView(props, {navigation, routes}) {
                 <View style={{justifyContent: "center", alignItems: "center", backgroundColor: "#E0884A"}}>
                   <TextInput 
                         style={styles.title} 
-                        value={recipeName} 
-                        onChange={value => setRecipeName(value)} //TODO: fix value setting
+                        // value={recipeName} 
+                        placeholder={recipeName}
+                        // onChange={value => setRecipeName(value)} //TODO: fix value setting
                     />
                 </View>
               <ScrollView style={{height: "20%", paddingBottom: "5%", marginTop: "2%"}}>
@@ -64,7 +68,7 @@ export default function EditRecipeView(props, {navigation, routes}) {
                         <View key={section.sectionName}>
                             <Collapse 
                                 style={styles.accordion}
-                                isCollapsed={true}
+                                isExpanded={true}
                                 key={section.sectionName}>
                                 <CollapseHeader>
                                     <View>
@@ -75,10 +79,13 @@ export default function EditRecipeView(props, {navigation, routes}) {
                                     {section.sectionBody.map(text => (
                                         <View key={text} style={{flexDirection: "row", left: "6%"}}>
                                             <Text style={styles.accordionBody}>&#160;&#8226;&#160;</Text>
-                                            <TextInput value={text} style={styles.accordionBody}/>
+                                            <TextInput placeholder={text} style={styles.accordionBody}/>
                                         </View>
-                                        
                                     ))}
+                                    <View style={{flexDirection: "row", left: "6%"}}>
+                                        <Text style={styles.accordionBody}>&#160;+&#160;</Text>
+                                        <TextInput style={styles.accordionBody}/>
+                                    </View>
                                 </CollapseBody>
                             </Collapse>
                         </View>
@@ -147,6 +154,7 @@ const styles = StyleSheet.create({
     accordionBody: {
       fontSize: 24,
       left: "5%",
+      paddingRight: "6%"
     },
     footerBar: {
       height: "8%",

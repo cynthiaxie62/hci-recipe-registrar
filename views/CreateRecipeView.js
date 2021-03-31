@@ -64,7 +64,7 @@ export default function CreateRecipeView(props, {navigation, routes}) {
                         <View key={section.sectionName} style={{top: "2%"}}>
                             <Collapse 
                                 style={styles.accordion}
-                                isCollapsed={true}
+                                isExpanded={true}
                                 key={section.sectionName}>
                                 <CollapseHeader>
                                     <View>
@@ -77,8 +77,11 @@ export default function CreateRecipeView(props, {navigation, routes}) {
                                             <Text style={styles.accordionBody}>&#160;&#8226;&#160;</Text>
                                             <TextInput placeholder="Type here" style={styles.accordionBody}/>
                                         </View>
-                                        
                                     ))}
+                                    <View style={{flexDirection: "row", left: "6%"}}>
+                                        <Text style={styles.accordionBody}>&#160;+&#160;</Text>
+                                        <TextInput style={styles.accordionBody}/>
+                                    </View>
                                 </CollapseBody>
                             </Collapse>
                         </View>
@@ -144,7 +147,8 @@ const styles = StyleSheet.create({
     },
     accordionBody: {
       fontSize: 24,
-      left: "6%",
+      left: "5%",
+      paddingRight: "6%"
     },
     footerBar: {
       height: "8%",
