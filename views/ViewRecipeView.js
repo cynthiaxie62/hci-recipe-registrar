@@ -3,7 +3,7 @@ import { ScrollView } from 'react-native';
 import { TouchableOpacity } from 'react-native';
 import { Text, View, StyleSheet } from 'react-native';
 import { IconButton } from 'react-native-paper';
-import { Header, Button } from "react-native-elements";
+import { Header, Button, Icon } from "react-native-elements";
 import {Collapse,CollapseHeader, CollapseBody, AccordionList} from 'accordion-collapse-react-native';
 
 /**
@@ -70,12 +70,17 @@ export default function ViewRecipeView(props, {navigation, routes}) {
                             <Collapse 
                                 style={styles.accordion}
                                 isExpanded={true}>
-                                <CollapseHeader>
-                                    <View>
+                                <CollapseHeader style={{borderBottomColor: '#CECCCD', borderBottomWidth: 0.5}}>
+                                    <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                                         <Text style={styles.accordionHeader}>{section.sectionName}</Text>
+                                        <Icon 
+                                          name='arrow-drop-down'
+                                          style={{marginTop: '15%', marginRight: '2%'}} 
+                                          size={40}
+                                        />
                                     </View>
                                 </CollapseHeader>
-                                <CollapseBody style={{marginBottom: "5%"}}> 
+                                <CollapseBody style={{marginBottom: "5%", marginTop: "2%"}}> 
                                     {section.sectionBody.map(text => (
                                         <Text key={text} style={styles.accordionBody}>&#8226;&#160;{text}</Text>
                                     ))}
@@ -119,9 +124,9 @@ const styles = StyleSheet.create({
       fontSize: 28,
       fontStyle: 'italic',
       justifyContent: 'center',
-      left: "5%",
-      paddingTop: "5%",
-      paddingBottom: "5%"
+      left: "10%",
+      paddingTop: "2%",
+      paddingBottom: "2%"
     },
     accordionBody: {
       fontSize: 24,

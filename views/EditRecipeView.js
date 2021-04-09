@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { ScrollView } from 'react-native';
 import { Text, View, StyleSheet, TextInput,TouchableOpacity, SafeAreaView } from 'react-native';
 import { IconButton } from 'react-native-paper';
-import { Header, Button } from "react-native-elements";
+import { Header, Button, Icon } from "react-native-elements";
 import {Collapse,CollapseHeader, CollapseBody, AccordionList} from 'accordion-collapse-react-native';
 
 /**
@@ -70,9 +70,14 @@ export default function EditRecipeView(props, {navigation, routes}) {
                                 style={styles.accordion}
                                 isExpanded={true}
                                 key={section.sectionName}>
-                                <CollapseHeader>
-                                    <View>
+                                <CollapseHeader style={{borderBottomColor: '#CECCCD', borderBottomWidth: 0.5}}>
+                                    <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                                         <Text style={styles.accordionHeader}>{section.sectionName}</Text>
+                                        <Icon 
+                                          name='arrow-drop-down'
+                                          style={{marginTop: '15%', marginRight: '2%'}} 
+                                          size={40}
+                                        />
                                     </View>
                                 </CollapseHeader>
                                 <CollapseBody style={{marginBottom: "5%"}}>
@@ -147,9 +152,9 @@ const styles = StyleSheet.create({
       fontSize: 28,
       fontStyle: 'italic',
       justifyContent: 'center',
-      left: "5%",
-      paddingTop: "5%",
-      paddingBottom: "5%"
+      left: "10%",
+      paddingTop: "2%",
+      paddingBottom: "2%"
     },
     accordionBody: {
       fontSize: 24,
