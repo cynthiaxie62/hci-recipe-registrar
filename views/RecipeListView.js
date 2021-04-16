@@ -1,75 +1,91 @@
 import * as React from 'react';
+import {useState} from "react";
 import { Text, View, StyleSheet, SafeAreaView, TouchableOpacity, TextInput, ScrollView} from 'react-native';
+import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, ListItem} from 'native-base';
+import RecipeList from "./RecipeList.json";
+import { Alert } from 'react-native';
 
 
 /**
  * This is a view of all the recipes
  */
 export default function RecipeListView(props, {navigation, routes}) {
-  const [recipe, id] = React.useState([
-    { name: 'bread', key: '1'},
-    { name: 'chicken pot pie', key: '2'},
-    { name: 'mcdonalds', key: '3'},
-    { name: 'fried rice', key: '4'},
-    { name: 'chipotle', key: '5'},
-    { name: 'sushi', key: '6'},
-    { name: 'water', key: '7'},
-    { name: 'cake', key: '8'},
-    { name: 'lemon cookies', key: '9'},
-    { name: 'chocolate chip cookies', key: '10'},
-    { name: 'gummies', key: '11'},
-    { name: 'fruit salad', key: '12'},
+  const [recipes, searchForRecipe] = useState([])
 
-  ]);
+  const RecipeListing = () => {
+    searchForRecipe([ ... recipes, {
+
+      
+    }])
+  }
+
     return (
         <View style={styles.container}>
 
           <SafeAreaView style ={styles.header}>
+
             <View style ={styles.searchContainer}>
               <SearchBar/> 
             </View>
 
             <View style ={styles.titleContainer}>
                 <Text style ={styles.titleText}>Recipes</Text>
-                
-                <View style ={styles.buttonContainer}> 
-                 <TouchableOpacity onPress={() => props.navigation.navigate("view", {screen: "createRecipe"})}>
-                   <View style={styles.button}>
-                    <Text style ={styles.buttonText}>Add New Recipe</Text>
-                   </View>
 
-                 </TouchableOpacity>
-                </View>
+                  <View style ={styles.buttonContainer}> 
+                    <TouchableOpacity onPress={() => props.navigation.navigate("view", {screen: "createRecipe"})}>
+                      <View style={styles.button}>
+                        <Text style ={styles.buttonText}>ADD NEW RECIPE</Text>
+                      </View>
+                    </TouchableOpacity>
+                  </View>
             </View>
           </SafeAreaView>
+      
 
           <ScrollView style ={styles.body}>
-            {recipe.map((recipe) => {
-              return (
-                <View key={recipe.key}>
-                  <TouchableOpacity onPress={() => props.navigation.navigate("view")}>
-                    <Text style={styles.recipe}>{recipe.name} </Text>
-                  </TouchableOpacity>
-                </View>
-              )
-            })}
+            {filterRecipe.map((Recipe) => {
+                return (
+                  <View key={Recipe.Name}>
+                    <TouchableOpacity onPress={() => props.navigation.navigate("view")}>
+                      <View style={styles.recipeButton}> 
+                        <View style={styles.recipeTextContainer}> 
+                          <Text style={styles.recipe}>{Recipe.Name} </Text>
+                        </View>
+                      </View>
+                    </TouchableOpacity>
+                  </View>
+                )
+              })}
           </ScrollView>
-
       </View>
-      
-
-      
     );
 }
 
+
+let helperArray = require( "./RecipeList.json");
+let filterRecipe = helperArray;
+
+//Search Bar
 const SearchBar = () => {
   return(
     <View style={styles.searchBar} > 
-      <TextInput style={styles.searchInput} placeholder ="Search Recipe..." />
+      <TextInput style={styles.searchInput} placeholder ="Search Recipe..." onChangeText={text=>{searchRecipe(text)}}/>
     </View>
 
   )
 }
+
+//Filter function for Search Bar
+const searchRecipe = (text) => {
+  filterRecipe = helperArray.filter(i => 
+    i.Name.includes(text))
+    console.log(filterRecipe)
+}
+
+
+
+
+
 
 const styles = StyleSheet.create({
     container: {
@@ -85,7 +101,7 @@ const styles = StyleSheet.create({
     searchContainer: {
       height: '40%',
       backgroundColor: '#E0884A',
-      justifyContent: 'center',
+      justifyContent: 'flex-end',
       alignItems: 'center'
     },
 
@@ -121,15 +137,18 @@ const styles = StyleSheet.create({
     },
 
     buttonContainer: {
-      width: '35%',
-      height: '30%',
+      width: '45%',
+      height: '40%',
       borderRadius: 8,
       backgroundColor: '#FAF5F3',
+      shadowOffset:{width: 2,  height: 2},
+      shadowColor: 'black',
+      shadowOpacity: .5,
       marginBottom: '3%'
     },
 
     button: {
-      width: '90%',
+      width: '80%',
       height: '90%',
       marginVertical: '.5%',
       marginHorizontal: '2%',
@@ -137,27 +156,45 @@ const styles = StyleSheet.create({
     },
 
     buttonText: {
-      fontSize: 12,
+      fontSize: 18,
       color: 'black',
-      textAlign: 'left',
+      textAlign: 'center',
       backgroundColor: '#FAF5F3',
       paddingVertical: 5,
       paddingLeft: '2%',
+
     },
 
     body: {
       height: '100%',
       backgroundColor: '#F3DFD6',
+
+    },
+
+    recipeButton: {
+      width: '80%',
+      height: 100,
+      marginVertical: '5%',
+      borderRadius: 8,
+      marginHorizontal: "10%",
+      backgroundColor: '#FAF5F3',
+      shadowOffset:{width: 2,  height: 2},
+      shadowColor: 'black',
+      shadowOpacity: .5,
+    },
+
+    recipeTextContainer: {
+      width: '100%',
+      alignItems: 'center',
+      borderTopLeftRadius: 8,
+      borderTopRightRadius: 8,
+      backgroundColor: '#E0884A'
     },
 
     recipe: {
-      fontSize: 30,
-      marginHorizontal: '10%',
-      marginVertical: '5%',
-      paddingLeft: '3%',
-      borderRadius: 8,
+      fontSize: 26,
       fontStyle: 'italic',
-      backgroundColor: '#FAF5F3'
+      backgroundColor: '#E0884A',
     }
 
 
