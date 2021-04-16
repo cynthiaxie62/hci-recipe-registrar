@@ -35,6 +35,11 @@ export default function CreateRecipeView(props, {navigation, routes}) {
           sectionName: "Tags",
           sectionBody: [""]
         }];
+
+    const addField = () => {
+
+    }
+
     return (
       <View style={styles.container}>
             <View style={styles.header}>
