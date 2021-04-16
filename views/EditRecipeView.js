@@ -97,8 +97,8 @@ export default function EditRecipeView(props, {navigation, routes}) {
                                           <TextInput multiline={true} value={text} style={styles.accordionBodyInput}/>
                                       </View>
                                     ))}
-                                    <View style={{flexDirection: "row-reverse", right: "2%", bottom: "2%"}}>
-                                      <View style ={{borderRadius: 8, justifyContent: 'center', alignItems: 'center', backgroundColor: '#3B804C'}}> 
+                                    <View style={{right: "2%", bottom: "2%", width: "40%", alignSelf: "center"}}>
+                                      <View style ={{borderRadius: 8, justifyContent: 'center', alignItems: 'center', backgroundColor: '#E0884A'}}> 
                                         <TouchableOpacity onPress={() => addField(section.sectionName)} >
                                           <View style={{justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0)', padding: 5}}>
                                               <Text style ={styles.buttonText}>+ Add Field</Text>

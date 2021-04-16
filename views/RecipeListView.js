@@ -148,11 +148,13 @@ const styles = StyleSheet.create({
     },
 
     button: {
-      width: '80%',
-      height: '90%',
+      width: '100%',
+      height: '100%',
       marginVertical: '.5%',
-      marginHorizontal: '2%',
+      borderRadius: 8,
       backgroundColor: '#FAF5F3',
+      alignItems: "center",
+      justifyContent: "center"
     },
 
     buttonText: {
@@ -160,8 +162,7 @@ const styles = StyleSheet.create({
       color: 'black',
       textAlign: 'center',
       backgroundColor: '#FAF5F3',
-      paddingVertical: 5,
-      paddingLeft: '2%',
+      paddingVertical: 5
 
     },
 
