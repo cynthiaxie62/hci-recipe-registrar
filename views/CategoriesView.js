@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, SafeAreaView, TouchableOpacity, TextInput, ScrollView} from 'react-native';
+import { Text, View, StyleSheet, SafeAreaView, TouchableOpacity, TextInput, ScrollView, FlatList} from 'react-native';
 
 /**
  * This is a view of all the categories
@@ -22,28 +22,24 @@ export default function Categories(props, {navigation, routes}) {
 
         <View style ={styles.titleContainer}>
             <Text style ={styles.titleText}>Categories</Text>
-            
-            <View style ={styles.buttonContainer}> 
-             <TouchableOpacity >
-               <View style={styles.button}>
-                <Text style ={styles.buttonText}>Add New Category</Text>
-               </View>
-
-             </TouchableOpacity>
-            </View>
         </View>
       </SafeAreaView>
 
-      <ScrollView style ={styles.body}>
-            {recipe.map((recipe) => {
-              return (
-                <View key={recipe.key}>
-                    <Text style={styles.recipe}>{recipe.name} </Text>
+      <FlatList style={styles.listContainer}
+        numColumns={2}
+        data={recipe}
+        renderItem={({item})=> (
+          <View style={styles.clickContainer}>
+            <TouchableOpacity>
+              <View style={styles.categoryButtonContainer}>
+                <View style={styles.categoryTextContainer}>
+                  <Text style={styles.recipe}> {item.name} </Text>
                 </View>
-              )
-            })}
-          </ScrollView>
-
+              </View>
+            </TouchableOpacity>
+          </View>
+        )}
+      />
   </View>
   
 
@@ -74,7 +70,7 @@ const styles = StyleSheet.create({
     serachContainer: {
       height: '40%',
       backgroundColor: '#E0884A',
-      justifyContent: 'center',
+      justifyContent: 'flex-end',
       alignItems: 'center'
     },
 
@@ -134,21 +130,41 @@ const styles = StyleSheet.create({
       paddingLeft: '2%',
     },
 
-    body: {
-      height: '100%',
-      backgroundColor: '#F3DFD6',
+    //Body
+    listContainer: {
+      width: '100%',
+      backgroundColor: '#F3DFD6'
+    },
+
+    clickContainer: {
+      width : '50%',
+    },
+
+    categoryButtonContainer: {
+      width: '80%',
+      aspectRatio: 1,
+      marginHorizontal: '10%',
+      marginVertical: '10%',
+      borderRadius: 8,
+      backgroundColor: '#FAF5F3',
+      shadowOffset:{width: 2,  height: 2},
+      shadowColor: 'black',
+      shadowOpacity: .5,
+    },
+
+    categoryTextContainer: {
+      width: '100%',
+      borderTopLeftRadius: 8,
+      borderTopRightRadius: 8,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#E0884A'
     },
 
     recipe: {
-      fontSize: 30,
-      width: '37.5%',
-      aspectRatio: 1,
-      marginHorizontal: '10%',
-      marginVertical: '5%',
-      paddingLeft: '3%',
-      borderRadius: 8,
+      fontSize: 26,
       fontStyle: 'italic',
-      backgroundColor: '#FAF5F3'
+      backgroundColor: '#E0884A',
     }
 
 
