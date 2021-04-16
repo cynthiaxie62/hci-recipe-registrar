@@ -13,7 +13,7 @@ export default function EditRecipeView(props, {navigation, routes}) {
     const recipe = [
         {
           sectionName: "Ingredients",
-          sectionBody: ["bread flour", "yeast", "water", "olive oil", "salt"]
+          sectionBody: ["bread flour", "yeast", "water", "olive oil", "salt", "milk"]
         }, 
         {
           sectionName: "Steps",
@@ -38,6 +38,11 @@ export default function EditRecipeView(props, {navigation, routes}) {
           sectionName: "Tags",
           sectionBody: ["baked goods", "French"]
         }];
+
+    const addField = () => {
+
+    }
+
     return (
       <View style={styles.container}>
             <View style={styles.header}>
@@ -58,9 +63,9 @@ export default function EditRecipeView(props, {navigation, routes}) {
                 <View style={{justifyContent: "center", alignItems: "center", backgroundColor: "#E0884A"}}>
                   <TextInput 
                         style={styles.title} 
-                        // value={recipeName} 
-                        placeholder={recipeName}
-                        // onChange={value => setRecipeName(value)} //TODO: fix value setting
+                        value={recipeName}
+                        placeholder="Enter recipe name"
+                        onChange={e => setRecipeName(e.target.value)} //TODO: fix value setting
                     />
                 </View>
               <ScrollView style={{height: "20%", paddingBottom: "5%", marginTop: "2%"}}>
@@ -80,16 +85,26 @@ export default function EditRecipeView(props, {navigation, routes}) {
                                         />
                                     </View>
                                 </CollapseHeader>
-                                <CollapseBody style={{marginBottom: "5%"}}>
-                                    {section.sectionBody.map(text => (
-                                        <View key={text} style={{flexDirection: "row", left: "6%"}}>
-                                            <Text style={styles.accordionBody}>&#160;&#8226;&#160;</Text>
-                                            <TextInput placeholder={text} style={styles.accordionBody}/>
+                                <CollapseBody style={{marginTop: "2%"}}>
+                                    {section.sectionName == "Steps" ? section.sectionBody.map(text => (
+                                        <View key={text} style={{flexDirection: "row", left: "2%"}}>
+                                            <Text style={styles.accordionBody}>{section.sectionBody.indexOf(text) + 1}.&#160;</Text>
+                                            <TextInput multiline={true} value={text} style={styles.accordionBodyInput}/>
                                         </View>
+                                    )) : section.sectionBody.map(text => (
+                                      <View key={text} style={{flexDirection: "row", left: "2%"}}>
+                                          <Text style={styles.accordionBody}>&#160;&#8226;&#160;</Text>
+                                          <TextInput multiline={true} value={text} style={styles.accordionBodyInput}/>
+                                      </View>
                                     ))}
-                                    <View style={{flexDirection: "row", left: "6%"}}>
-                                        <Text style={styles.accordionBody}>&#160;+&#160;</Text>
-                                        <TextInput style={styles.accordionBody}/>
+                                    <View style={{right: "2%", bottom: "2%", width: "40%", alignSelf: "center"}}>
+                                      <View style ={{borderRadius: 8, justifyContent: 'center', alignItems: 'center', backgroundColor: '#E0884A'}}> 
+                                        <TouchableOpacity onPress={() => addField(section.sectionName)} >
+                                          <View style={{justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0)', padding: 5}}>
+                                              <Text style ={styles.buttonText}>+ Add Field</Text>
+                                          </View>
+                                        </TouchableOpacity>
+                                      </View>
                                     </View>
                                 </CollapseBody>
                             </Collapse>
@@ -152,14 +167,24 @@ const styles = StyleSheet.create({
       fontSize: 28,
       fontStyle: 'italic',
       justifyContent: 'center',
-      left: "10%",
+      left: "25%",
       paddingTop: "2%",
       paddingBottom: "2%"
     },
     accordionBody: {
       fontSize: 24,
       left: "5%",
-      paddingRight: "6%"
+      paddingHorizontal: 3, 
+      lineHeight: 40,
+      marginBottom: 15
+    },
+    accordionBodyInput: {
+      fontSize: 24,
+      paddingRight: "6%", 
+      lineHeight: 40,
+      marginBottom: 15,
+      width: '90%',
+      left: 3
     },
     footerBar: {
       height: "8%",

@@ -32,6 +32,7 @@ export default function BrowseRecipesContainer(props, {navigation, routes}) {
                 <MaterialCommunityIcons name="food" size={24} color={color} />
               ),
             }}
+            initialParams={{recipes: props.recipes, addField: props.addField}}
           />
           <Tab.Screen
             name="Categories" 
@@ -42,6 +43,7 @@ export default function BrowseRecipesContainer(props, {navigation, routes}) {
                 <FontAwesome5 name="layer-group" size={24} color={color} />
               ),
             }}
+            initialParams={{recipes: props.recipes, addField: props.addField}}
           />
         </Tab.Navigator>
     );

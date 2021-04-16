@@ -8,10 +8,10 @@ import LinkingConfiguration from './LinkingConfiguration'
 
 export default function App() {
   const [recipes, setRecipes] = useState([
-    { recipeName: 'chicken pot pie', key: '1', content: [
+    { recipeName: 'french bread', key: '1', content: [
         {
           sectionName: "Ingredients",
-          sectionBody: ["flour", "egg", "water", "oil", "<3"]
+          sectionBody: ["3 cups flour", "1 egg", "1 cup water", "2 tbsp oil"]
         }, 
         {
           sectionName: "Steps",
@@ -30,22 +30,22 @@ export default function App() {
           sectionBody: []
         }, 
         {
-          sectionName: "Tags",
-          sectionBody: ["baked goods", "italian"]
+          sectionName: "Categories",
+          sectionBody: ["baked goods", "French"]
         }]
     },
-    { recipeName: 'beef pot pie', key: '2', content: [
+    { recipeName: 'chicken pot pie', key: '2', content: [
         {
           sectionName: "Ingredients",
-          sectionBody: ["beef", "pot", "pie"]
+          sectionBody: ["1 whole chicken", "1 pie crust"]
         }, 
         {
           sectionName: "Steps",
-          sectionBody: ["put beef in pot", "add pie crust"]
+          sectionBody: ["put chicken in pot", "add pie crust"]
         }, 
         {
           sectionName: "Kitchen Equipment",
-          sectionBody: ["oven"]
+          sectionBody: ["1 large pot"]
         }, 
         {
           sectionName: "Additional Notes",
@@ -56,14 +56,14 @@ export default function App() {
           sectionBody: []
         }, 
         {
-          sectionName: "Tags",
+          sectionName: "Categories",
           sectionBody: []
         }]
     },
-    { recipeName: 'turkey pot pie', key: '3', content: [
+    { recipeName: 'fried rice', key: '3', content: [
         {
           sectionName: "Ingredients",
-          sectionBody: ["turkey", "pot", "pie"]
+          sectionBody: ["1 tbsp fries", "3 cups rice"]
         }, 
         {
           sectionName: "Steps",
@@ -82,17 +82,32 @@ export default function App() {
           sectionBody: []
         }, 
         {
-          sectionName: "Tags",
+          sectionName: "Categories",
           sectionBody: []
         }]
     }]);
+
+  const addField = (recipeName, sectionName) => {
+    var recipesCopy = recipes;
+    recipesCopy.map((recipe) => {
+      if (recipe.recipeName == recipeName) {
+        recipe.content.map((section) => {
+          if (section.sectionName == sectionName) {
+            section.sectionBody.push("");
+          }
+        })
+      }
+    });
+    setRecipes(recipesCopy);
+  };
+  
   const Stack = createStackNavigator()
   
   return (
     <NavigationContainer linking={LinkingConfiguration} mode="modal"> 
       <Stack.Navigator initialRouteName='browse' screenOptions={{ headerShown: false }}>
-        <Stack.Screen name='browse' component={BrowseRecipesContainer} recipes={recipes} setRecipes={setRecipes} />
-        <Stack.Screen name='view' component={ViewRecipeContainer} recipes={recipes} setRecipes={setRecipes} />
+        <Stack.Screen name='browse' component={BrowseRecipesContainer} recipes={recipes} addField={addField}/>
+        <Stack.Screen name='view' component={ViewRecipeContainer} recipes={recipes} addField={addField} />
       </Stack.Navigator>
     </NavigationContainer>
   );

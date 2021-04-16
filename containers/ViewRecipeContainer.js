@@ -11,11 +11,20 @@ import CreateRecipeView from '../views/CreateRecipeView';
  */
 export default function ViewRecipeContainer(props, {navigation, routes}) {
   const Stack = createStackNavigator()
+
+  const addRecipe = () => {
+
+  };
+
+  const editRecipe = () => {
+
+  }
+
   return (
           <Stack.Navigator initialRouteName='viewRecipe' screenOptions={{ headerShown: false }}>
-              <Stack.Screen name='viewRecipe' component={ViewRecipeView} />
-              <Stack.Screen name='editRecipe' component={EditRecipeView} />
-              <Stack.Screen name='createRecipe' component={CreateRecipeView} />
+              <Stack.Screen name='viewRecipe' component={ViewRecipeView}/>
+              <Stack.Screen name='editRecipe' component={EditRecipeView} editRecipe={editRecipe}/>
+              <Stack.Screen name='createRecipe' component={CreateRecipeView} addRecipe={addRecipe}/>
           </Stack.Navigator>
   )
 }

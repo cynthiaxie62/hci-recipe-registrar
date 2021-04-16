@@ -50,6 +50,11 @@ export default function ViewRecipeView(props, {navigation, routes}) {
                         size={35}
                         onPress={() => props.navigation.navigate("browse")}
                     />}
+                    // centerComponent= {<TouchableOpacity 
+                    //   style={{alignSelf: "flex-end", top:"20%", right: "20%"}}
+                    //   onPress={() => console.log("Deleted recipe")}>
+                    //   <Text style={styles.actionText}>Delete</Text>
+                    // </TouchableOpacity>}
                     rightComponent= {<TouchableOpacity 
                         style={{alignSelf: "flex-end", top:"20%", right: "20%"}}
                         onPress={() => props.navigation.navigate("editRecipe")}>
@@ -64,7 +69,7 @@ export default function ViewRecipeView(props, {navigation, routes}) {
                     <Text style={styles.title}>Recipe Name</Text>
                 </View>
             </View>
-            <ScrollView style={{height: "100%", marginBottom: "15%"}}>
+            <ScrollView style={{height: "100%", marginBottom: "8%"}}>
                     {recipe.map(section => (
                         <View key={section.sectionName} style={{}}>
                             <Collapse 
@@ -80,9 +85,11 @@ export default function ViewRecipeView(props, {navigation, routes}) {
                                         />
                                     </View>
                                 </CollapseHeader>
-                                <CollapseBody style={{marginBottom: "5%", marginTop: "2%"}}> 
-                                    {section.sectionBody.map(text => (
-                                        <Text key={text} style={styles.accordionBody}>&#8226;&#160;{text}</Text>
+                                <CollapseBody style={{marginTop: "2%"}}> 
+                                    {section.sectionName == "Steps" ? section.sectionBody.map(text => (
+                                        <Text key={text} style={styles.accordionBody}>{section.sectionBody.indexOf(text) + 1}.&#160;{text}</Text>
+                                    )) : section.sectionBody.map(text => (
+                                      <Text key={text} style={styles.accordionBody}>&#8226;&#160;{text}</Text>
                                     ))}
                                 </CollapseBody>
                             </Collapse>
@@ -90,6 +97,14 @@ export default function ViewRecipeView(props, {navigation, routes}) {
                     ))}
                     
             </ScrollView>
+            <View style ={styles.footerContainer}>
+            <View style ={styles.buttonContainerRed}> 
+                  <TouchableOpacity onPress={() => console.log("Recipe deleted!")} >
+                    <View style={styles.button}>
+                      <Text style ={styles.buttonText}>Delete Recipe</Text>
+                    </View>
+                  </TouchableOpacity>
+            </View></View>
       </View>
     );
 }
@@ -124,14 +139,47 @@ const styles = StyleSheet.create({
       fontSize: 28,
       fontStyle: 'italic',
       justifyContent: 'center',
-      left: "10%",
+      left: "25%",
       paddingTop: "2%",
       paddingBottom: "2%"
     },
     accordionBody: {
       fontSize: 24,
       left: "5%",
-      paddingRight: "6%"
+      paddingRight: "6%", 
+      lineHeight: 40,
+      marginBottom: 15,
+      flexWrap: 'wrap'
+    },
+    buttonContainerRed: {
+      width: '40%',
+      height: '60%',
+      borderRadius: 8,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#C32747',
+      alignSelf: 'center',
+      marginBottom: '3%',
+      top: -10
+    },
+    button: {
+      width: '90%',
+      height: '90%',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'rgba(0, 0, 0, 0)',
+    },
+    buttonText: {
+      fontSize: 18,
+      color: '#FAF5F3',
+      textAlign: 'center',
+      backgroundColor: 'rgba(0, 0, 0, 0)',
+    },
+    footerContainer: {
+      height: '8%',
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      alignItems: 'center',
     }
   });
   
