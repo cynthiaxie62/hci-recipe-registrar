@@ -69,7 +69,7 @@ export default function ViewRecipeView(props, {navigation, routes}) {
                     <Text style={styles.title}>Recipe Name</Text>
                 </View>
             </View>
-            <ScrollView style={{height: "100%", marginBottom: "15%"}}>
+            <ScrollView style={{height: "100%", marginBottom: "8%"}}>
                     {recipe.map(section => (
                         <View key={section.sectionName} style={{}}>
                             <Collapse 
@@ -97,13 +97,14 @@ export default function ViewRecipeView(props, {navigation, routes}) {
                     ))}
                     
             </ScrollView>
+            <View style ={styles.footerContainer}>
             <View style ={styles.buttonContainerRed}> 
-                  <TouchableOpacity onPress={() => props.navigation.navigate("viewRecipe")} >
+                  <TouchableOpacity onPress={() => console.log("Recipe deleted!")} >
                     <View style={styles.button}>
                       <Text style ={styles.buttonText}>Delete Recipe</Text>
                     </View>
                   </TouchableOpacity>
-            </View>
+            </View></View>
       </View>
     );
 }
@@ -152,7 +153,7 @@ const styles = StyleSheet.create({
     },
     buttonContainerRed: {
       width: '40%',
-      height: '5%',
+      height: '60%',
       borderRadius: 8,
       justifyContent: 'center',
       alignItems: 'center',
@@ -163,7 +164,7 @@ const styles = StyleSheet.create({
     },
     button: {
       width: '90%',
-      height: '10%',
+      height: '90%',
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: 'rgba(0, 0, 0, 0)',
@@ -174,5 +175,11 @@ const styles = StyleSheet.create({
       textAlign: 'center',
       backgroundColor: 'rgba(0, 0, 0, 0)',
     },
+    footerContainer: {
+      height: '8%',
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      alignItems: 'center',
+    }
   });
   
