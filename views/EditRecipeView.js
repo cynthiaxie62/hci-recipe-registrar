@@ -35,7 +35,7 @@ export default function EditRecipeView(props, {navigation, routes}) {
           sectionBody: []
         }, 
         {
-          sectionName: "Tags",
+          sectionName: "Categories",
           sectionBody: ["baked goods", "French"]
         }];
 

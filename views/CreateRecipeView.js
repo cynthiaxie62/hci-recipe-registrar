@@ -32,7 +32,7 @@ export default function CreateRecipeView(props, {navigation, routes}) {
           sectionBody: [""]
         }, 
         {
-          sectionName: "Tags",
+          sectionName: "Categories",
           sectionBody: [""]
         }];
 
