@@ -50,6 +50,11 @@ export default function ViewRecipeView(props, {navigation, routes}) {
                         size={35}
                         onPress={() => props.navigation.navigate("browse")}
                     />}
+                    // centerComponent= {<TouchableOpacity 
+                    //   style={{alignSelf: "flex-end", top:"20%", right: "20%"}}
+                    //   onPress={() => console.log("Deleted recipe")}>
+                    //   <Text style={styles.actionText}>Delete</Text>
+                    // </TouchableOpacity>}
                     rightComponent= {<TouchableOpacity 
                         style={{alignSelf: "flex-end", top:"20%", right: "20%"}}
                         onPress={() => props.navigation.navigate("editRecipe")}>
@@ -92,6 +97,13 @@ export default function ViewRecipeView(props, {navigation, routes}) {
                     ))}
                     
             </ScrollView>
+            <View style ={styles.buttonContainerRed}> 
+                  <TouchableOpacity onPress={() => props.navigation.navigate("viewRecipe")} >
+                    <View style={styles.button}>
+                      <Text style ={styles.buttonText}>Delete Recipe</Text>
+                    </View>
+                  </TouchableOpacity>
+            </View>
       </View>
     );
 }
@@ -137,6 +149,30 @@ const styles = StyleSheet.create({
       lineHeight: 40,
       marginBottom: 15,
       flexWrap: 'wrap'
-    }
+    },
+    buttonContainerRed: {
+      width: '40%',
+      height: '5%',
+      borderRadius: 8,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#C32747',
+      alignSelf: 'center',
+      marginBottom: '3%',
+      top: -10
+    },
+    button: {
+      width: '90%',
+      height: '10%',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'rgba(0, 0, 0, 0)',
+    },
+    buttonText: {
+      fontSize: 18,
+      color: '#FAF5F3',
+      textAlign: 'center',
+      backgroundColor: 'rgba(0, 0, 0, 0)',
+    },
   });
   
