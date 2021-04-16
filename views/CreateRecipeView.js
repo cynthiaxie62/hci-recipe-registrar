@@ -76,12 +76,17 @@ export default function CreateRecipeView(props, {navigation, routes}) {
                                         />
                                     </View>
                                 </CollapseHeader>
-                                <CollapseBody>
-                                    {section.sectionBody.map(text => (
-                                        <View key={text} style={{flexDirection: "row", left: "6%"}}>
-                                            <Text style={styles.accordionBody}>&#160;&#8226;&#160;</Text>
-                                            <TextInput placeholder="Type here" style={styles.accordionBody}/>
+                                <CollapseBody style={{marginTop: "2%"}}>
+                                    {section.sectionName == "Steps" ? section.sectionBody.map(text => (
+                                        <View key={text} style={{flexDirection: "row", left: "2%"}}>
+                                            <Text style={styles.accordionBody}>{section.sectionBody.indexOf(text) + 1}.&#160;</Text>
+                                            <TextInput multiline={true} value={text} style={styles.accordionBodyInput}/>
                                         </View>
+                                    )) : section.sectionBody.map(text => (
+                                      <View key={text} style={{flexDirection: "row", left: "2%"}}>
+                                          <Text style={styles.accordionBody}>&#160;&#8226;&#160;</Text>
+                                          <TextInput multiline={true} value={text} style={styles.accordionBodyInput}/>
+                                      </View>
                                     ))}
                                     <View style={{flexDirection: "row", left: "6%"}}>
                                         <Text style={styles.accordionBody}>&#160;+&#160;</Text>
@@ -148,14 +153,24 @@ const styles = StyleSheet.create({
       fontSize: 28,
       fontStyle: 'italic',
       justifyContent: 'center',
-      left: "10%",
+      left: "25%",
       paddingTop: "2%",
       paddingBottom: "2%"
     },
     accordionBody: {
       fontSize: 24,
       left: "5%",
-      paddingRight: "6%"
+      paddingHorizontal: 3, 
+      lineHeight: 40,
+      marginBottom: 15
+    },
+    accordionBodyInput: {
+      fontSize: 24,
+      paddingRight: "6%", 
+      lineHeight: 40,
+      marginBottom: 15,
+      width: '90%',
+      left: 3
     },
     footerBar: {
       height: "8%",

@@ -13,7 +13,7 @@ export default function ViewRecipeContainer(props, {navigation, routes}) {
   const Stack = createStackNavigator()
   return (
           <Stack.Navigator initialRouteName='viewRecipe' screenOptions={{ headerShown: false }}>
-              <Stack.Screen name='viewRecipe' component={ViewRecipeView} />
+              <Stack.Screen name='viewRecipe' component={ViewRecipeView}/>
               <Stack.Screen name='editRecipe' component={EditRecipeView} />
               <Stack.Screen name='createRecipe' component={CreateRecipeView} />
           </Stack.Navigator>

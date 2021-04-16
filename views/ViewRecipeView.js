@@ -80,9 +80,11 @@ export default function ViewRecipeView(props, {navigation, routes}) {
                                         />
                                     </View>
                                 </CollapseHeader>
-                                <CollapseBody style={{marginBottom: "5%", marginTop: "2%"}}> 
-                                    {section.sectionBody.map(text => (
-                                        <Text key={text} style={styles.accordionBody}>&#8226;&#160;{text}</Text>
+                                <CollapseBody style={{marginTop: "2%"}}> 
+                                    {section.sectionName == "Steps" ? section.sectionBody.map(text => (
+                                        <Text key={text} style={styles.accordionBody}>{section.sectionBody.indexOf(text) + 1}.&#160;{text}</Text>
+                                    )) : section.sectionBody.map(text => (
+                                      <Text key={text} style={styles.accordionBody}>&#8226;&#160;{text}</Text>
                                     ))}
                                 </CollapseBody>
                             </Collapse>
@@ -124,14 +126,17 @@ const styles = StyleSheet.create({
       fontSize: 28,
       fontStyle: 'italic',
       justifyContent: 'center',
-      left: "10%",
+      left: "25%",
       paddingTop: "2%",
       paddingBottom: "2%"
     },
     accordionBody: {
       fontSize: 24,
       left: "5%",
-      paddingRight: "6%"
+      paddingRight: "6%", 
+      lineHeight: 40,
+      marginBottom: 15,
+      flexWrap: 'wrap'
     }
   });
   
