@@ -1,9 +1,6 @@
 import * as React from 'react';
 import {useState} from "react";
 import { Text, View, StyleSheet, SafeAreaView, TouchableOpacity, TextInput, ScrollView} from 'react-native';
-import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, ListItem} from 'native-base';
-import RecipeList from "./RecipeList.json";
-import { Alert } from 'react-native';
 
 
 /**

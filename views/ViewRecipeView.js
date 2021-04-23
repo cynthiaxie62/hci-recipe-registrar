@@ -55,11 +55,6 @@ export default function ViewRecipeView(props, {navigation, routes}) {
                         size={35}
                         onPress={() => props.navigation.navigate("browse")}
                     />}
-                    // centerComponent= {<TouchableOpacity 
-                    //   style={{alignSelf: "flex-end", top:"20%", right: "20%"}}
-                    //   onPress={() => console.log("Deleted recipe")}>
-                    //   <Text style={styles.actionText}>Delete</Text>
-                    // </TouchableOpacity>}
                     rightComponent= {<TouchableOpacity 
                         style={{alignSelf: "flex-end", top:"20%", right: "20%"}}
                         onPress={() => props.navigation.navigate("editRecipe")}>
@@ -116,7 +111,7 @@ export default function ViewRecipeView(props, {navigation, routes}) {
                 setConfirm(false);
               }}
               dialogTitle={<DialogTitle 
-                title={"Are you sure you want to delete the recipe for RecipeName?"} 
+                title={"Are you sure you want to delete this recipe?"} 
               />}
             >
               <DialogFooter>
