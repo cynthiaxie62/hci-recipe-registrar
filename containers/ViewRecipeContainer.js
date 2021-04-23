@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
@@ -12,19 +12,11 @@ import CreateRecipeView from '../views/CreateRecipeView';
 export default function ViewRecipeContainer(props, {navigation, routes}) {
   const Stack = createStackNavigator()
 
-  const addRecipe = () => {
-
-  };
-
-  const editRecipe = () => {
-
-  }
-
   return (
           <Stack.Navigator initialRouteName='viewRecipe' screenOptions={{ headerShown: false }}>
               <Stack.Screen name='viewRecipe' component={ViewRecipeView}/>
-              <Stack.Screen name='editRecipe' component={EditRecipeView} editRecipe={editRecipe}/>
-              <Stack.Screen name='createRecipe' component={CreateRecipeView} addRecipe={addRecipe}/>
+              <Stack.Screen name='editRecipe' component={EditRecipeView}/>
+              <Stack.Screen name='createRecipe' component={CreateRecipeView}/>
           </Stack.Navigator>
   )
 }

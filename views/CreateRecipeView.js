@@ -43,19 +43,6 @@ export default function CreateRecipeView(props, {navigation, routes}) {
     return (
       <View style={styles.container}>
             <View style={styles.header}>
-                <Header 
-                    style={{flexDirection: "row", color: "#E0884A"}}
-                    leftComponent= {<IconButton
-                        icon="arrow-left"
-                        color="white"
-                        size={35}
-                        onPress={() => props.navigation.navigate("browse")}
-                    />}
-                    containerStyle={{
-                        backgroundColor: "#E0884A",
-                        borderBottomColor: "#E0884A"
-                      }}
-                />
             </View>
             <View style={{justifyContent: "center", alignItems: "center", backgroundColor: "#E0884A"}}>
                   <TextInput 
@@ -113,7 +100,7 @@ export default function CreateRecipeView(props, {navigation, routes}) {
                 <View style ={styles.buttonContainerRed}> 
                   <TouchableOpacity onPress={() => props.navigation.navigate("browse")} >
                     <View style={styles.button}>
-                      <Text style ={styles.buttonText}>Delete Recipe</Text>
+                      <Text style ={styles.buttonText}>Discard Recipe</Text>
                     </View>
                   </TouchableOpacity>
                 </View>
@@ -139,7 +126,7 @@ const styles = StyleSheet.create({
     header: {
       backgroundColor: "#E0884A",
       flexDirection: "column",
-      height: "15%"
+      height: "10%"
     },
     title: {
       fontSize: 35,

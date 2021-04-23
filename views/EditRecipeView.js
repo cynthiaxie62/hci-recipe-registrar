@@ -4,13 +4,14 @@ import { Text, View, StyleSheet, TextInput,TouchableOpacity, SafeAreaView } from
 import { IconButton } from 'react-native-paper';
 import { Header, Button, Icon } from "react-native-elements";
 import {Collapse,CollapseHeader, CollapseBody, AccordionList} from 'accordion-collapse-react-native';
+import { render } from 'react-dom';
 
 /**
  * This is a view to edit a recipe
  */
 export default function EditRecipeView(props, {navigation, routes}) {
     const [recipeName, setRecipeName] = useState("Recipe Name")
-    const recipe = [
+    let recipe = [
         {
           sectionName: "Ingredients",
           sectionBody: ["bread flour", "yeast", "water", "olive oil", "salt", "milk"]
@@ -39,26 +40,18 @@ export default function EditRecipeView(props, {navigation, routes}) {
           sectionBody: ["baked goods", "French"]
         }];
 
-    const addField = () => {
-
-    }
+        const addField = (sectionName) => {
+          recipe.map((section) => {
+            if (section.sectionName == sectionName) {
+              section.sectionBody.push("");
+            }
+          });
+          console.log(recipe);
+        };
 
     return (
       <View style={styles.container}>
             <View style={styles.header}>
-            <Header 
-                    leftComponent= {<IconButton
-                        icon="arrow-left"
-                        color="white"
-                        size={35}
-                        onPress={() => props.navigation.navigate("viewRecipe")}
-                    />}
-                    containerStyle={{
-                        backgroundColor: "#E0884A",
-                        borderBottomColor: "#E0884A"
-                      }}
-                />
-                
             </View>
                 <View style={{justifyContent: "center", alignItems: "center", backgroundColor: "#E0884A"}}>
                   <TextInput 
@@ -116,7 +109,7 @@ export default function EditRecipeView(props, {navigation, routes}) {
                 <View style ={styles.buttonContainerRed}> 
                   <TouchableOpacity onPress={() => props.navigation.navigate("viewRecipe")} >
                     <View style={styles.button}>
-                      <Text style ={styles.buttonText}>Delete Changes</Text>
+                      <Text style ={styles.buttonText}>Discard Changes</Text>
                     </View>
                   </TouchableOpacity>
                 </View>
@@ -142,7 +135,7 @@ const styles = StyleSheet.create({
     header: {
       backgroundColor: "#E0884A",
       flexDirection: "column",
-      height: "15%"
+      height: "12%"
     },
 
     title: {

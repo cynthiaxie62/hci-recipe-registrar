@@ -1,15 +1,17 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { ScrollView } from 'react-native';
 import { TouchableOpacity } from 'react-native';
 import { Text, View, StyleSheet } from 'react-native';
 import { IconButton } from 'react-native-paper';
-import { Header, Button, Icon } from "react-native-elements";
+import { Header, Icon } from "react-native-elements";
 import {Collapse,CollapseHeader, CollapseBody, AccordionList} from 'accordion-collapse-react-native';
+import Dialog, { DialogTitle, DialogFooter, DialogButton } from 'react-native-popup-dialog';
 
 /**
  * This is a view of a specific recipe.
  */
 export default function ViewRecipeView(props, {navigation, routes}) {
+    const [recipeName, setRecipeName] = useState('Recipe Name');
     const recipe = [
         {
           sectionName: "Ingredients",
@@ -39,6 +41,9 @@ export default function ViewRecipeView(props, {navigation, routes}) {
           sectionBody: ["baked goods", "French"]
         }];
 
+    const [confirmVisible, setConfirm] = useState(false);
+    const [deleteVisible, setDelete] = useState(false);
+
     return (
         <View style={styles.container}>
             <View style={styles.headerBar}>
@@ -66,12 +71,12 @@ export default function ViewRecipeView(props, {navigation, routes}) {
                       }}
                 />
                 <View style={{left: "5%"}}>
-                    <Text style={styles.title}>Recipe Name</Text>
+                    <Text style={styles.title}>{recipeName}</Text>
                 </View>
             </View>
             <ScrollView style={{height: "100%", marginBottom: "8%"}}>
                     {recipe.map(section => (
-                        <View key={section.sectionName} style={{}}>
+                        <View key={section.sectionName}>
                             <Collapse 
                                 style={styles.accordion}
                                 isExpanded={true}>
@@ -99,12 +104,32 @@ export default function ViewRecipeView(props, {navigation, routes}) {
             </ScrollView>
             <View style ={styles.footerContainer}>
             <View style ={styles.buttonContainerRed}> 
-                  <TouchableOpacity onPress={() => console.log("Recipe deleted!")} >
+                  <TouchableOpacity onPress={() => setConfirm(true)} >
                     <View style={styles.button}>
                       <Text style ={styles.buttonText}>Delete Recipe</Text>
                     </View>
                   </TouchableOpacity>
             </View></View>
+            <Dialog
+              visible={confirmVisible}
+              onTouchOutside={() => {
+                setConfirm(false);
+              }}
+              dialogTitle={<DialogTitle 
+                title={"Are you sure you want to delete the recipe for RecipeName?"} 
+              />}
+            >
+              <DialogFooter>
+                <DialogButton
+                  text="CANCEL"
+                  onPress={() => {setConfirm(false)}}
+                />
+                <DialogButton
+                  text="DELETE"
+                  onPress={() => {setConfirm(false); props.navigation.navigate("browse")}}
+                />
+              </DialogFooter>
+            </Dialog>
       </View>
     );
 }
